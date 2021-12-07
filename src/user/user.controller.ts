@@ -14,6 +14,8 @@ export class UserController {
     @Post('/register')
     async registerUser(@Body() registerUserDto: RegisterUserDto): Promise<User> {
 
+        this.checkUserDto(registerUserDto);
+
         if (!(await this.doesUserExistByName(registerUserDto.username))) {
             const user = new User();
             Object.assign(user, registerUserDto);
@@ -24,5 +26,13 @@ export class UserController {
 
     private async doesUserExistByName(username: string): Promise<boolean> {
         return await this.userService.findUserByName(username) !== undefined
+    }
+
+    private checkUserDto(registerUserDto: RegisterUserDto) {
+        if (registerUserDto.username == null || registerUserDto.username == '') {
+            throw new BadRequestException('Username should not be empty!');
+        } else if (registerUserDto.password == null || registerUserDto.password == '') {
+            throw new BadRequestException('Password should not be empty!');
+        }
     }
 }
