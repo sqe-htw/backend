@@ -19,8 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
+    "test:all": "npm run test:login && npm run test:register",
     "test:login": "node test/Login/login_test_setup.js && newman run test/Login/Backend-API-Login-Tests.postman_collection.json",
-    "test:register": "newman run test/Register/Backend-API-Register-Tests.postman_collection.json"
+    "test:register": "node test/Register/register_test_setup.js && newman run test/Register/Backend-API-Register-Tests.postman_collection.json"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
