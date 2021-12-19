@@ -11,6 +11,10 @@ export class UserService {
         return this.usersRepository.save(user);
     }
 
+    async updateUser(user: User): Promise<User> {
+        return this.usersRepository.save(user);
+    }
+
     async findUserByName(username: string): Promise<User | undefined> {
         return await this.usersRepository
             .createQueryBuilder("user")
@@ -28,5 +32,9 @@ export class UserService {
             .where("user.username = :username", { username })
             .andWhere("user.password = :password", { password })
             .getOne();
+    }
+
+    async findUserById(userId: number): Promise<User | undefined> {
+        return await this.usersRepository.findOne(userId);
     }
 }

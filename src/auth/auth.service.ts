@@ -21,9 +21,18 @@ export class AuthService {
 
     async login(user: any) {
         const payload = { user };
+        const jwtToken = this.jwtService.sign(payload, { expiresIn: '1d' });
+
+        this.updateUserToken(user, jwtToken);
+
         return {
-            access_token: this.jwtService.sign(payload, { expiresIn: '1d' }),
+            access_token: jwtToken,
             user
         };
+    }
+
+    private updateUserToken(user: any, token: string): void {
+        user.currentToken = token;
+        this.userService.updateUser(user);
     }
 }

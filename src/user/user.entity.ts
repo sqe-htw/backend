@@ -11,4 +11,7 @@ export class User {
 
     @Column({ nullable: false })
     password: string;
+
+    @Column({ nullable: true })
+    currentToken: string;
 }
