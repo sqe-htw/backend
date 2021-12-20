@@ -7,8 +7,8 @@ export class Card {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @ManyToOne(() => User, user => user.id)
-    user: User;
+    @Column({ nullable: false })
+    userId: number;
 
     @Column({ nullable: false })
     text: string;
