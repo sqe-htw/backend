@@ -1,0 +1,97 @@
+{
+	"info": {
+		"_postman_id": "08242559-554f-44b1-af92-af0e9874000b",
+		"name": "Backend-API-Cards-Tests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Backend-Cards-1.1",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.sendRequest({\r",
+							"    url: 'http://localhost:3000/auth/login',\r",
+							"    method: 'POST',\r",
+							"    header: 'Content-Type:application/json',\r",
+							"    body: {\r",
+							"        mode: 'raw',\r",
+							"        raw: JSON.stringify({ \"username\": \"backendCardsTestUserName\" , \"password\": \"backendCardsTestUserPassword\" })\r",
+							"    }\r",
+							"}, function (err, res) {\r",
+							"    res = res.json();\r",
+							"    const userId = res.user.id;\r",
+							"    const token = res.access_token;\r",
+							"    pm.environment.set(\"userId\", userId);\r",
+							"    pm.environment.set(\"token\", token);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check Cards\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"\r",
+							"for (var i = 0; i < jsonData.length; i++) {\r",
+							"    pm.expect(jsonData[i].userId).to.eql(pm.environment.get(\"userId\"));\r",
+							"}\r",
+							"    pm.expect(jsonData.length).to.greaterThan(1);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cards/getAllCards/{{userId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cards",
+						"getAllCards",
+						"{{userId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
