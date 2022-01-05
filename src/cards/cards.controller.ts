@@ -26,7 +26,7 @@ export class CardsController {
 
     @Put('/updateCard')
     async updateCard(@Body() card: Card, @Req() req): Promise<void> {
-        this.doesCardBelongToUser(card.id, req.user.id)
+        await this.doesCardBelongToUser(card.id, req.user.id)
         this.doesCardTextContainIllegalCharacters(card.text)
         card.userId = req.user.id
         this.cardsService.update(card)
