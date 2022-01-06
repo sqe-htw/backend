@@ -4,9 +4,14 @@ const sqlite3 = require('sqlite3').verbose();
 function setUpDatabaseForTest(pathToQueryFile) {
 
     let db = connectToDatabase();
-    const dataSql = fs.readFileSync(pathToQueryFile).toString();
-    runQueries(db, dataSql);
-    disconnectFromDatabase(db);
+    try {
+        const dataSql = fs.readFileSync(pathToQueryFile).toString();
+        runQueries(db, dataSql);
+    } catch (error) {
+        console.log("Could read or not execute queries: " + error);
+    } finally {
+        disconnectFromDatabase(db);
+    }
 }
 
 function connectToDatabase() {

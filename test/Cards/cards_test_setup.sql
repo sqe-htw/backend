@@ -32,7 +32,30 @@ INSERT INTO card (id, userId, text) VALUES(3333, 222, 'Delete card test3');
 
 -- Backend-Cards-3.1
 INSERT INTO user ( id, username, password) VALUES( 111, 'backendCardsTestUserName9', 'backendCardsTestUserPassword9');
-INSERT INTO card (id, userId, text) VALUES(4444, 111, 'Delete card test4');
+INSERT INTO card (id, userId, text) VALUES(4444, 111, 'Update card test1');
 
 -- Backend-Cards-3.2
 INSERT INTO user ( id, username, password) VALUES( 110, 'backendCardsTestUserName10', 'backendCardsTestUserPassword10');
+
+-- Backend-Cards-3.3
+INSERT INTO user (id, username, password) VALUES( 109, 'backendCardsTestUserName11', 'backendCardsTestUserPassword11');
+INSERT INTO card (id, userId, text) VALUES(5555, 109, 'Update card test3');
+
+-- Backend-Cards-3.4
+INSERT INTO user (id, username, password) VALUES( 108, 'backendCardsTestUserName12', 'backendCardsTestUserPassword12');
+INSERT INTO user (id, username, password) VALUES( 107, 'backendCardsTestUserName13', 'backendCardsTestUserPassword13');
+INSERT INTO card (id, userId, text) VALUES(6666, 107, 'Update card test4');
+
+-- Backend-Cards-3.5
+INSERT INTO user (id, username, password) VALUES( 106, 'backendCardsTestUserName14', 'backendCardsTestUserPassword14');
+INSERT INTO card (id, userId, text) VALUES(7777, 106, 'Update card test5');
+
+-- Backend-Cards-4.1
+INSERT INTO user (id, username, password) VALUES( 1000, 'backendCardsTestUserName15', 'backendCardsTestUserPassword15');
+INSERT INTO card (id, userId, text) VALUES(8888, 1000, 'Create card test1');
+
+-- Backend-Cards-4.2
+INSERT INTO user (id, username, password) VALUES( 1001, 'backendCardsTestUserName16', 'backendCardsTestUserPassword16');
+
+-- Backend-Cards-5.1
+INSERT INTO user (id, username, password) VALUES( 1002, 'backendCardsTestUserName17', 'backendCardsTestUserPassword17');
