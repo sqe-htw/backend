@@ -1,5 +1,6 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
 import { RegisterUserDto } from './register-user.dto';
+import { UserLogic } from './user-logic';
 import { User } from './user.entity';
 import { UserService } from './user.service';
 
@@ -7,13 +8,14 @@ import { UserService } from './user.service';
 export class UserController {
 
     constructor(
-        private readonly userService: UserService
+        private readonly userService: UserService,
+        private readonly userLogic: UserLogic
     ) { }
 
     @Post('/register')
     async registerUser(@Body() registerUserDto: RegisterUserDto): Promise<User> {
 
-        this.checkUserDto(registerUserDto);
+        this.userLogic.checkUserDto(registerUserDto);
 
         if (!(await this.doesUserExistByName(registerUserDto.username))) {
             const user = new User();
@@ -25,13 +27,5 @@ export class UserController {
 
     private async doesUserExistByName(username: string): Promise<boolean> {
         return await this.userService.findUserByName(username) !== undefined
-    }
-
-    private checkUserDto(registerUserDto: RegisterUserDto) {
-        if (registerUserDto.username == null || registerUserDto.username == '') {
-            throw new BadRequestException('Username should not be empty!');
-        } else if (registerUserDto.password == null || registerUserDto.password == '') {
-            throw new BadRequestException('Password should not be empty!');
-        }
     }
 }
