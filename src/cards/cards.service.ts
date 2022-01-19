@@ -20,7 +20,7 @@ export class CardsService {
         if (this.cardsRepository.findOne({ where: { id: card.id } })) {
             this.cardsRepository.save(card);
         } else {
-            new Error("Cannot update card: Card with id " + card.id + " not found.")
+            new Error("Cannot update card: Card with id " + card.id + " not found.");
         }
     }
 
@@ -28,7 +28,7 @@ export class CardsService {
         if (this.cardsRepository.findOne({ where: { id: cardId } })) {
             this.cardsRepository.delete({ id: cardId });
         } else {
-            new Error("Cannot delete card: Card with id " + cardId + " not found.")
+            new Error("Cannot delete card: Card with id " + cardId + " not found.");
         }
     }
 }

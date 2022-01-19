@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, ForbiddenException, Get, NotFoundException, Param, ParseIntPipe, Post, Put, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, NotFoundException, Param, ParseIntPipe, Post, Put, Req, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CardsLogic } from './cards-logic';
 import { Card } from './cards.entity';
@@ -21,6 +21,7 @@ export class CardsController {
 
     @Post('/createCard')
     async createCard(@Body() card: Card, @Req() req): Promise<void> {
+        this.cardsLogic.checkCardText(card.text);
         this.cardsLogic.doesCardTextContainIllegalCharacters(card.text);
         card.userId = req.user.id;
         this.cardsService.create(card);
@@ -29,6 +30,7 @@ export class CardsController {
     @Put('/updateCard')
     async updateCard(@Body() card: Card, @Req() req): Promise<void> {
         await this.doesCardBelongToUser(card.id, req.user.id)
+        this.cardsLogic.checkCardText(card.text);
         this.cardsLogic.doesCardTextContainIllegalCharacters(card.text)
         card.userId = req.user.id
         this.cardsService.update(card)
