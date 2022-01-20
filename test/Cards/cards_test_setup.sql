@@ -10,7 +10,6 @@ INSERT INTO card (userId, text) VALUES( 999, 'CardTestText3');
 -- Backend-Cards-1.2
 INSERT INTO user ( id, username, password) VALUES( 888, 'backendCardsTestUserName2', 'backendCardsTestUserPassword2');
 
-
 -- Backend-Cards-1.3
 INSERT INTO user ( id, username, password) VALUES( 777, 'backendCardsTestUserName3', 'backendCardsTestUserPassword3');
 
@@ -49,6 +48,10 @@ INSERT INTO card (id, userId, text) VALUES(6666, 107, 'Update card test4');
 -- Backend-Cards-3.5
 INSERT INTO user (id, username, password) VALUES( 106, 'backendCardsTestUserName14', 'backendCardsTestUserPassword14');
 INSERT INTO card (id, userId, text) VALUES(7777, 106, 'Update card test5');
+
+-- Backend-Cards-3.6
+INSERT INTO user (id, username, password) VALUES( 105, 'backendCardsTestUserName18', 'backendCardsTestUserPassword18');
+INSERT INTO card (id, userId, text) VALUES(9999, 105, 'Update card test5');
 
 -- Backend-Cards-4.1
 INSERT INTO user (id, username, password) VALUES( 1000, 'backendCardsTestUserName15', 'backendCardsTestUserPassword15');
