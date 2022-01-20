@@ -60,5 +60,8 @@ INSERT INTO card (id, userId, text) VALUES(8888, 1000, 'Create card test1');
 -- Backend-Cards-4.2
 INSERT INTO user (id, username, password) VALUES( 1001, 'backendCardsTestUserName16', 'backendCardsTestUserPassword16');
 
+-- Backend-Cards-4.3
+INSERT INTO user (id, username, password) VALUES( 1003, 'backendCardsTestUserName19', 'backendCardsTestUserPassword19');
+
 -- Backend-Cards-5.1
 INSERT INTO user (id, username, password) VALUES( 1002, 'backendCardsTestUserName17', 'backendCardsTestUserPassword17');
