@@ -39,8 +39,13 @@ describe('UserController', () => {
         expect(() => { cardsLogic.doesCardTextContainIllegalCharacters(text) }).toThrow(ForbiddenException);
     });
 
-    test('Check if illegal characters (@#%^&*()) is not allowed', async () => {
+    test('Check if illegal characters (@#%^&*()) are not allowed', async () => {
         const text = "@#%^&*()";
+        expect(() => { cardsLogic.doesCardTextContainIllegalCharacters(text) }).toThrow(ForbiddenException);
+    });
+
+    test('Check if string containing some illegal characters are not allowed', async () => {
+        const text = "This is okay! This is not okay&*@";
         expect(() => { cardsLogic.doesCardTextContainIllegalCharacters(text) }).toThrow(ForbiddenException);
     });
 
